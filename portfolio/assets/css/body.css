@@ -1,0 +1,94 @@
+@font-face{
+	src: url(../fonts/SignPainter.otf);
+	font-family: Sign;
+}
+
+body{
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+}
+
+section{
+	width: 100vw;
+	min-width: 1280px;
+	height: 100vh;
+	min-height: 720px;
+	position: absolute;
+	transition-property: top;
+	transition-duration: 500ms;
+	transition-timing-function: ease-in-out;
+	top: 100%;
+	background-color: white;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+section.active{
+	top: 0%;
+}
+
+nav{
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 99;
+	cursor: pointer;
+}
+
+div.node{
+	position: relative;
+	transition-duration: 100ms;
+	transition-property: margin-left;
+	transition-timing-function: ease-in-out;
+	font-family: Sign;
+	font-size: 20pt;
+	color: white;
+	text-shadow: 1px 1px 1px black;
+}
+
+div.node.active{
+}
+
+div.node div.point{
+	display: inline-block;
+	vertical-align: middle;
+	background-color: white;
+	border: 1px solid black;
+	width: 5px;
+	height: 5px;
+	margin: 0 10px;
+	border-radius: 100%;
+	transition-property: background-color;
+	transition-duration: 100ms;
+	transition-timing-function: ease-in-out;
+}
+
+div.node.active div.point{
+	opacity: 1;
+	background-color: black;
+}
+
+h1.title{
+	font-family: Sign;
+	font-size: 60pt;
+	text-shadow: 1px 1px 1px black;
+	color: white;
+	margin: 0;
+	position: absolute;
+	top: 2%;
+	left: 2%;
+}
+
+div#bio{
+	height: 90%;
+	width: 50%;
+	background-color: white;
+	margin: 0 auto;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
