@@ -1,7 +1,93 @@
 "use strict";
 
 var RJH = (function(){
-	var page, sections; 
+	var page, sections, modules; 
+	modules = {
+		"carousel": function(model){
+			var carousel, container, images, index, nArrow, pArrow, next, prev, go;
+
+			this.style.backgroundImage = "url(assets/img/portraiture.jpg)";
+			carousel = document.createElement("div");
+			carousel.classList.add("carousel");
+			this.appendChild(carousel);
+
+			nArrow = document.createElement("div");
+			nArrow.classList.add("arrow");
+			nArrow.id = "next";
+			nArrow.style.backgroundImage = "url(assets/svg/next.svg)";
+			nArrow.addEventListener("click", function(){
+				next();
+			});
+			nArrow.addEventListener("mouseenter", function(){
+				this.classList.toggle("active");
+			});
+			nArrow.addEventListener("mouseleave", function(){
+				this.classList.toggle("active");
+			});
+			carousel.appendChild(nArrow);
+
+			pArrow = document.createElement("div");
+			pArrow.classList.add("arrow");
+			pArrow.id = "prev";
+			pArrow.style.backgroundImage = "url(assets/svg/prev.svg)";
+			pArrow.addEventListener("click", function(){
+				prev();
+			});
+			pArrow.addEventListener("mouseenter", function(){
+				this.classList.toggle("active");
+			});
+			pArrow.addEventListener("mouseleave", function(){
+				this.classList.toggle("active");
+			});
+
+			carousel.appendChild(pArrow);
+
+
+
+			images = [];
+			model.images.forEach(function(img, i){
+				var card, image;
+				image = new Image();
+				image.src = "assets/img/" + img;
+
+				card = document.createElement("div");
+				card.style.backgroundImage = "url("+image.src+")";
+				card.addEventListener("click", function(){
+					next();
+				});
+				card.classList.add("card");
+				if(!i)
+					card.classList.add("active");
+				carousel.appendChild(card);
+				images.push(card);
+			});
+
+			index = 0;
+			next = function(){
+				images[index].classList.toggle("active");
+				if(index === model.images.length-1)
+					index = 0;
+				else
+					index++;
+				images[index].classList.toggle("active");
+				go();
+			};
+
+			prev = function(){
+				images[index].classList.toggle("active");
+				if(index === 0)
+					index = images.length-1;
+				else
+					index--;
+				images[index].classList.toggle("active");
+				go();
+			};
+
+			go = function(){
+			};
+
+		}
+	};
 	sections = {
 		"brief bio": function(){
 			var bio;
@@ -13,7 +99,15 @@ var RJH = (function(){
 		"drawing": function(){
 		},
 		"portraiture": function(){
-			this.style.backgroundImage = "url(assets/img/portraiture.jpg)";
+			modules.carousel.call(this,{
+				"images": [
+					"meganwatercolor.jpg",
+					"nudes.png",
+					"points.gif",
+					"smoke.jpg"
+				]
+			});
+
 		},
 		"architecture": function(){
 			this.style.backgroundImage = "url(assets/svg/architecture.svg)";
@@ -88,7 +182,6 @@ var RJH = (function(){
 			card.appendChild(title);
 
 			sections[e].call(card);
-
 		});
 		window.addEventListener("load", function(){
 			document.body.appendChild(buffer);

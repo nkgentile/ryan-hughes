@@ -92,3 +92,56 @@ div#bio{
 	left: 50%;
 	transform: translate(-50%,-50%);
 }
+
+div.carousel{
+	width: 90%;
+	height: 90%;
+	margin: 0 auto;
+	white-space: nowrap;
+}
+
+div.arrow{
+	width: 0.5in;
+	height: 0.5in;
+	position: absolute;
+	top: 50%;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	opacity: 0.5;
+	transition-property: opacity;
+	transition-duration: 100ms;
+	transition-timing-function: ease-in-out;
+}
+
+div.arrow.active{
+	opacity: 1;
+}
+
+div#next.arrow{
+	right: 10%;
+}
+
+div#prev.arrow{
+	left: 10%;
+}
+
+div.carousel div.card{
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 50%;
+	height: 90%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	opacity: 0;
+	transition-property: opacity;
+	transition-duration: 200ms;
+	transition-timing-function: ease-in-out;
+}
+
+div.carousel div.card.active{
+	opacity: 1;
+}
