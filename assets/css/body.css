@@ -23,7 +23,7 @@ div#page{
 header{
 	width: 100%;
 	text-align: center;
-	margin-bottom: 5em;
+	margin-bottom: 2em;
 }
 
 a.badge, a.badge:visited{
@@ -91,7 +91,8 @@ div#portrait{
 	width: 10em;
 	height: 10em;
 	border: 1px solid black;
-	background-image: url("../svg/selfie.svg");
+	background-color: white;
+	background-image: url("../img/headshot.jpg");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -103,7 +104,7 @@ div#bio{
 	width: 20%;
 	min-width: 500px;
 	padding: 2em;
-	background-color: white;
+	background-color: rgba(255,255,255,0.9);
 	box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.25);
 	transition: margin-bottom, opacity 300ms ease-in-out;
 }
@@ -111,4 +112,23 @@ div#bio{
 div#bio.active{
 	opacity: 1;
 	bottom: 0;
+}
+
+a#portfolio{
+	display: block;
+	margin: 0 auto;
+	height: 5em;
+	width: 10em;
+	background-image: url("../svg/portfolio.svg");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-bottom: 1px solid transparent;
+	transition-property: border-bottom-color;
+	transition-duration: 100ms;
+	transition-timing-function: ease-in-out;
+}
+
+a#portfolio:hover{
+	border-bottom-color: black;
 }

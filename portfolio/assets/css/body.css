@@ -3,6 +3,11 @@
 	font-family: Sign;
 }
 
+@font-face{
+	src: url(../fonts/Brandon_light.otf);
+	font-family: Brandon;
+}
+
 body{
 	margin: 0;
 	width: 100vw;
@@ -32,10 +37,11 @@ section.active{
 
 nav{
 	position: absolute;
-	right: 0;
-	top: 0;
+	right: 1em;
+	top: 50%;
 	z-index: 99;
 	cursor: pointer;
+	transform: translateY(-50%);
 }
 
 div.node{
@@ -43,8 +49,8 @@ div.node{
 	transition-duration: 100ms;
 	transition-property: margin-left;
 	transition-timing-function: ease-in-out;
-	font-family: Sign;
-	font-size: 20pt;
+	font-family: Brandon;
+	font-size: 15pt;
 	color: white;
 	text-shadow: 1px 1px 1px black;
 }
@@ -85,12 +91,15 @@ h1.title{
 div#bio{
 	height: 90%;
 	width: 50%;
-	background-color: white;
 	margin: 0 auto;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
+	background-image: url("../img/briefbio.png");
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
 div.carousel{
@@ -100,11 +109,22 @@ div.carousel{
 	white-space: nowrap;
 }
 
+div.caption{
+	width: 100%;
+	white-space: normal;
+	position: absolute;
+	bottom: 0;
+	background-color: rgba(255,255,255,0.9);
+	padding: 1em;
+	margin-left: -1em;
+	font-family: Brandon;
+}
+
 div.arrow{
 	width: 0.5in;
 	height: 0.5in;
 	position: absolute;
-	top: 50%;
+	bottom: 10%;
 	background-position: center;
 	background-size: contain;
 	background-repeat: no-repeat;
