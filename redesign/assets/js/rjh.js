@@ -36,7 +36,7 @@ CONTNT = (function(){
 		modules.gallery = function(){
 			var gallery;
 			gallery = document.createElement("div");
-			gallery.id = "gallery";
+			gallery.classList.add("gallery__home");
 			for(var i=0; i<10; i++)
 				gallery.appendChild(
 					modules.card.call(this)
@@ -47,7 +47,7 @@ CONTNT = (function(){
 		modules.card = function(){
 			var card;
 			card = document.createElement("div");
-			card.classList.add("card");
+			card.classList.add("card__home");
 			return card;
 		};
 
@@ -72,19 +72,21 @@ CONTNT = (function(){
 	modules.container = function(){
 		var container;
 		container = document.createElement("div");
-		container.id = "container";
+		container.classList.add("container__main");
 		document.body.appendChild(container);
 		this.container = container;
 	};
 	modules.menu = function(){
 		var menu;
-		menu = document.createElement("nav");
+		menu = document.createElement("div");
+		menu.classList.add("nav__main");
 		this.container.appendChild(menu);
 		this.menu = menu;
 	};
 	modules.content = function(){
 		var content;
 		content = document.createElement("div");
+		content.classList.add("content__main");
 		this.container.appendChild(content);
 		this.content = content;
 	};

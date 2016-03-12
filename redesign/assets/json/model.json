@@ -1,7 +1,7 @@
 {
 	"pages":[
 		{
-			"css":"home.css"
+			"name":"home"
 		}
 	]
 }
