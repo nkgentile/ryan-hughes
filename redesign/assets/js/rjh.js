@@ -1,17 +1,12 @@
 "use strict";
 var CONTNT, Page;
 
-Page = function(_name){
-	return {
-		"name":_name,
-		"modules":null,
-		"display":null,
-		"render":null,
-	};
+Page = function(){
+	var model, style;
 };
 
 CONTNT = (function(){
-	var util, render, model, modules;
+	var util, render, model, modules, pages;
 
 	util = {};
 
@@ -33,6 +28,46 @@ CONTNT = (function(){
 		xhr.send();
 	}());
 
+	pages = {};
+	pages.home = function(){
+		var buffer, modules, render, display;
+
+		modules = {};
+		modules.gallery = function(){
+			var gallery;
+			gallery = document.createElement("div");
+			gallery.id = "gallery";
+			for(var i=0; i<10; i++)
+				gallery.appendChild(
+					modules.card.call(this)
+				);
+
+			return gallery;
+		};
+		modules.card = function(){
+			var card;
+			card = document.createElement("div");
+			card.classList.add("card");
+			return card;
+		};
+
+		render = (function(){
+			buffer = new DocumentFragment();
+			buffer.appendChild(
+				modules.gallery.call(this)
+			);
+		}());
+
+		display = function(){
+			this.content.innerHTML = "";
+			this.content.appendChild(buffer);
+		};
+
+		return {
+			"display":display
+		};
+	};
+
 	modules = {};
 	modules.container = function(){
 		var container;
@@ -47,10 +82,18 @@ CONTNT = (function(){
 		this.container.appendChild(menu);
 		this.menu = menu;
 	};
+	modules.content = function(){
+		var content;
+		content = document.createElement("div");
+		this.container.appendChild(content);
+		this.content = content;
+	};
 
 	render = function(){
 		modules.container.call(this);
 		modules.menu.call(this);
+		modules.content.call(this);
+		pages.home.call(this).display.call(this);
 	};
 
 	return {
