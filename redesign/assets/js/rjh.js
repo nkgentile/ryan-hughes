@@ -30,7 +30,8 @@ CONTNT = (function(){
 
 	pages = {};
 	pages.home = function(){
-		var buffer, modules, render, display;
+		var buffer, model, modules, render, display;
+		model = this;
 
 		modules = {};
 		modules.gallery = function(){
@@ -39,9 +40,8 @@ CONTNT = (function(){
 			gallery.classList.add("gallery__home");
 			for(var i=0; i<10; i++)
 				gallery.appendChild(
-					modules.card.call(this)
+					modules.card.call(model)
 				);
-
 			return gallery;
 		};
 		modules.card = function(){
@@ -51,16 +51,48 @@ CONTNT = (function(){
 			return card;
 		};
 
+		buffer = new DocumentFragment();
 		render = (function(){
-			buffer = new DocumentFragment();
 			buffer.appendChild(
-				modules.gallery.call(this)
+				modules.gallery()
 			);
 		}());
 
 		display = function(){
-			this.content.innerHTML = "";
-			this.content.appendChild(buffer);
+			model.content.innerHTML = "";
+			model.content.appendChild(buffer);
+		};
+
+		return {
+			"display":display
+		};
+	};
+	pages.bio = function(){
+		var buffer, model, modules, render, display;
+		model = this;
+
+		modules = {};
+		modules.bio = function(){
+			var bio;
+			bio = document.createElement("div");
+			model.about.bio.forEach(function(p, i){
+				var paragraph;
+				paragraph = document.createElement("p");
+				paragraph.classList.add("about");
+				paragraph.textContent = p;
+				bio.appendChild(paragraph);
+			});
+		};
+
+		buffer = new DocumentFragment();
+		render = (function(){
+			var bio, portrait;
+			bio = modules.bio();
+		}());
+
+		display = function(){
+			model.content.innerHTML = "";
+			model.content.appendChild(buffer);
 		};
 
 		return {
@@ -77,11 +109,43 @@ CONTNT = (function(){
 		this.container = container;
 	};
 	modules.menu = function(){
-		var menu;
-		menu = document.createElement("div");
-		menu.classList.add("nav__main");
+		var menu, header, nav;
+		menu = document.createElement("aside");
+		menu.classList.add("menu__main");
+
+		header = document.createElement("h1");
+		header.classList.add("header__main");
+		header.textContent = "ryan hughes";
+		menu.appendChild(header);
+
+		nav = document.createElement("nav");
+		nav.classList.add("__main");
+		menu.appendChild(nav);
+
+		this.navigation.forEach(function(e, i){
+			var navItem;
+			navItem = modules.navItem.call(e);
+			nav.appendChild(navItem);
+			return navItem;
+		});
 		this.container.appendChild(menu);
 		this.menu = menu;
+	};
+	modules.navItem = function(){
+		var item, click;
+		item = document.createElement("div");
+		item.classList.add("item__main");
+		item.textContent = this.name;
+
+		click = function(){
+			if(!pages[this.name])
+				return console.error("Page \'"+this.name+"\' doesn't exist.");
+			console.log(this.name);
+			pages[this.name].display();
+		}.bind(this);
+		item.addEventListener("click", click);
+
+		return item;
 	};
 	modules.content = function(){
 		var content;
@@ -92,10 +156,13 @@ CONTNT = (function(){
 	};
 
 	render = function(){
-		modules.container.call(this);
-		modules.menu.call(this);
-		modules.content.call(this);
-		pages.home.call(this).display.call(this);
+		modules.container.call(model);
+		modules.menu.call(model);
+		modules.content.call(model);
+		for(var page in pages){
+			pages[page] = pages[page].call(model);
+		};
+		pages.home.display();
 	};
 
 	return {

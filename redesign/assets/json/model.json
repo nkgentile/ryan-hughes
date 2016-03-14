@@ -1,7 +1,26 @@
 {
-	"pages":[
+	"navigation":[
 		{
-			"name":"home"
+			"name":"bio"
+		},
+		{
+			"name":"resume"
+		},
+		{
+			"name":"projects"
+		},
+		{
+			"name":"contact"
+		},
+		{
+			"name":"links"
 		}
-	]
+	],
+	"about":{
+		"bio":[
+			"My name is Ryan Hughes and I&apos;m a grad student in French &amp; Francophone studies at UCLA studying contemporary French critical theory&comma; identity politics&comma; and community planning&sol;organizing&period;",
+			"I recently completed my masters and am now hoping to transfer my research interests and passions into a career in architecture&comma; starting with a masters in architecture&period;"
+		],
+		"portrait":"Profile.jpg"
+	}
 }
