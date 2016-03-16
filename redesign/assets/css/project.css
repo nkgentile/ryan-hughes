@@ -8,6 +8,7 @@ div.project{
 }
 
 h1.title__project{
+	font-size: 40pt;
 	margin: 0;
 	flex: auto;
 	text-align: right;

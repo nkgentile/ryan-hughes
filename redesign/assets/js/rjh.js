@@ -70,18 +70,38 @@ CONTNT = (function(){
 		modules.bio = function(){
 			var bio;
 			bio = document.createElement("div");
+			bio.id = "bio";
+			bio.appendChild(modules.about());
+			bio.appendChild(modules.portrait());
+			return bio;
+		};
+		modules.about= function(){
+			var about;
+			about = document.createElement("div");
+			about.id = "about";
 			model.about.bio.forEach(function(p, i){
 				var paragraph;
 				paragraph = document.createElement("p");
 				paragraph.classList.add("about");
-				paragraph.textContent = p;
-				bio.appendChild(paragraph);
+				paragraph.innerHTML = p;
+				about.appendChild(paragraph);
 			});
-			return bio;
+			return about;
+		};
+		modules.portrait = function(){
+			var portrait, image;
+
+			image = new Image();
+			image.src = ["assets/img/",model.about.portrait].join("");
+
+			portrait = document.createElement("div");
+			portrait.id = "portrait";
+			portrait.style.backgroundImage = ["url(", image.src, ")"].join("");
+			return portrait;
 		};
 
 		render = function(){
-			var bio, portrait;
+			var buffer;
 			buffer = new DocumentFragment();
 			buffer.appendChild(modules.bio());
 			return buffer;
@@ -259,6 +279,35 @@ CONTNT = (function(){
 			var buffer;
 			buffer = new DocumentFragment();
 			buffer.appendChild(modules.project());
+			return buffer;
+		};
+
+		display = function(){
+			content.innerHTML = "";
+			content.appendChild(render());
+		};
+
+		return {
+			"render":render,
+			"display":display
+		};
+	}());
+	pages.resume = (function(){
+		var modules, render, display;
+		
+		modules = new Object();
+		modules.resume = function(){
+			var resume;
+			resume = document.createElement("div");
+			resume.id = "resume";
+			resume.innerHTML = model.resume;
+			return resume;
+		};
+
+		render = function(){
+			var buffer;
+			buffer = new DocumentFragment();
+			buffer.appendChild(modules.resume());
 			return buffer;
 		};
 

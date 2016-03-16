@@ -1,0 +1,28 @@
+div#bio{
+	flex: auto;
+
+	display: flex;
+	flex-flow: row wrap;
+}
+
+div#about{
+	width: 300px;
+	flex: auto;
+	
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+div#about{
+	flex: 1 0 auto;
+	padding: 0 30px;
+}
+
+div#portrait{
+	width: 475px;
+	height: 350px;
+	flex: auto;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}

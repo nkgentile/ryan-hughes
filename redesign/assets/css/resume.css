@@ -1,0 +1,24 @@
+div#resume{
+}
+
+div#resume ul{
+	max-width: 600px;
+}
+
+div#resume h1{
+	font-size: 16pt;
+}
+
+div#resume h2{
+	margin: 0;
+	font-size: 14pt;
+}
+
+div#resume h3{
+	margin-top: 0;
+	font-size: 12pt;
+}
+
+div#resume h4,ul{
+	10pt;
+}
