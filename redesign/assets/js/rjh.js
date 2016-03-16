@@ -363,8 +363,14 @@ CONTNT = (function(){
 
 			item = modules.navItem();
 			if(e.name === "projects"){
-				item.appendChild(modules.navItem());
+				item.appendChild((function(){
+					var title;
+					title = modules.navItem();
+					title.classList.add("title");
+					return title;
+				}()));
 				item.firstElementChild.textContent = e.name;
+				item.classList.add("parent");
 				e.children.forEach(function(f, n){
 					var child;
 					child = modules.navItem.call(f);
@@ -372,6 +378,12 @@ CONTNT = (function(){
 					child.textContent = f.name;
 					child.addEventListener("click", click.bind(f));
 					item.appendChild(child);
+				});
+				item.addEventListener("mouseenter", function(){
+					item.classList.add("active");
+				});
+				item.addEventListener("mouseleave", function(){
+					item.classList.remove("active");
 				});
 			} else{
 				item.textContent = e.name;
