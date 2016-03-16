@@ -21,7 +21,6 @@ div.container__main{
 
 aside.menu__main{
 	min-width: 150px;
-	overflow-y: scroll;
 	flex: 0 1 auto;
 	padding: 40px;
 
@@ -56,8 +55,7 @@ div.item__main.active{
 }
 
 div.content__main{
-	height: 100vh;
 	flex: auto;
 	display: inline-flex;
-	overflow-y: scroll;
+	max-width: 1200px;
 }

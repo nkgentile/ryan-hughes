@@ -1,6 +1,5 @@
 div.project{
 	flex: auto;
-	max-width: 1200px;
 
 	display: flex;
 	flex-flow: row wrap;
@@ -36,8 +35,22 @@ div.project__gallery{
 }
 
 div.carousel__gallery{
+	flex: auto;
 	margin: 15px;
 	width: 300px;
 	height: 300px;
-	outline: 1px solid red;
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+div.item__carousel{
+	transition: 300ms margin-left ease-in;
+	width: 100%;
+	height: 100%;
+	flex: 0 0 100%;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
 }

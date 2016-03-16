@@ -25,10 +25,8 @@ CONTNT = (function(){
 	}());
 
 	pages = {};
-	pages.home = function(){
-		var buffer, modules, render, display;
-
-		buffer = new DocumentFragment();
+	pages.home = (function(){
+		var modules, render, display;
 
 		modules = {};
 		modules.gallery = function(){
@@ -39,7 +37,7 @@ CONTNT = (function(){
 				gallery.appendChild(
 					modules.card.call(model)
 				);
-			buffer.appendChild(gallery);
+			return gallery;
 		};
 		modules.card = function(){
 			var card;
@@ -49,23 +47,24 @@ CONTNT = (function(){
 		};
 
 		render = function(){
-			modules.gallery();
+			var buffer;
+			buffer = new DocumentFragment();
+			buffer.appendChild(modules.gallery());
+			return buffer;
 		};
 
 		display = function(){
 			content.innerHTML = "";
-			content.appendChild(buffer);
+			content.appendChild(render());
 		};
 
 		return {
-			"render":render,
-			"display":display
+			"display":display,
+			"render":render
 		};
-	};
-	pages.bio = function(){
-		var buffer, modules, render, display;
-
-		buffer = new DocumentFragment();
+	}());
+	pages.bio = (function(){
+		var modules, render, display;
 
 		modules = {};
 		modules.bio = function(){
@@ -78,25 +77,28 @@ CONTNT = (function(){
 				paragraph.textContent = p;
 				bio.appendChild(paragraph);
 			});
+			return bio;
 		};
 
 		render = function(){
 			var bio, portrait;
-			bio = modules.bio();
+			buffer = new DocumentFragment();
+			buffer.appendChild(modules.bio());
+			return buffer;
 		};
 
 		display = function(){
 			content.innerHTML = "";
-			content.appendChild(buffer);
+			content.appendChild(render());
 		};
 
 		return {
 			"render":render,
 			"display":display
 		};
-	};
-	pages.pyrite = function(){
-		var buffer, modules, render, display;
+	}());
+	pages.pyrite = (function(){
+		var modules, render, display;
 
 		modules = {};
 		modules.title = function(){
@@ -132,14 +134,109 @@ CONTNT = (function(){
 			gallery = document.createElement("div");
 			gallery.classList.add("project__gallery");
 
-			for(var i=4; i--;){
-				var n;
-				n = document.createElement("div");
-				n.classList.add("carousel__gallery");
-				gallery.appendChild(n);
-			}
+			gallery.appendChild(modules.plans());
+			gallery.appendChild(modules.elevations());
+			gallery.appendChild(modules.images());
+			gallery.appendChild(modules.model());
 
 			return gallery;
+		};
+		modules.plans = function(){
+			var carousel, slideshow;
+			carousel = modules.carousel();
+			model.projects.pyrite.assets.plans.forEach(function(e, i){
+				var item;
+				item = modules.carouselItem.call(e);
+				carousel.appendChild(item);
+				return item;
+			});
+			return carousel;
+		};
+		modules.elevations = function(){
+			var carousel;
+			carousel = modules.carousel();
+			model.projects.pyrite.assets.elevations.forEach(function(e, i){
+				var item;
+				item = modules.carouselItem.call(e);
+				carousel.appendChild(item);
+				return item;
+			});
+			return carousel;
+		};
+		modules.images = function(){
+			var carousel;
+			carousel = modules.carousel();
+			model.projects.pyrite.assets.images.forEach(function(e, i){
+				var item;
+				item = modules.carouselItem.call(e);
+				carousel.appendChild(item);
+				return item;
+			});
+			return carousel;
+		};
+		modules.model = function(){
+			var item;
+			item = document.createElement("div");
+			item.classList.add("carousel__gallery");
+			return item;
+		};
+		modules.carousel = function(){
+			var carousel, slideshow;
+			carousel = document.createElement("div");
+			carousel.classList.add("carousel__gallery");
+			slideshow = {
+				"active":0,
+				"interval":5000 * (Math.random() + 1),
+				"next":function(){
+					if(slideshow.active === carousel.children.length - 1)
+						slideshow.go(0);
+					else
+						slideshow.go(slideshow.active+1);
+				},
+				"prev":function(){
+					if(!slideshow.activeItem)
+						return;
+					else
+						slideshow.go(slideshow.activeItem - 1)
+				},
+				"go":function(i){
+					var nodes = carousel.children;
+					carousel.firstElementChild.style.marginLeft = ["-", i, "00%"].join("");
+					nodes[slideshow.active].classList.remove("active");
+					slideshow.active = i;
+					nodes[slideshow.active].classList.add("active");
+				},
+				"start":function(){
+					slideshow.timer = setInterval(slideshow.next, slideshow.interval);
+				},
+				"stop":function(){
+					if(slideshow.timer === undefined)
+						return;
+					clearInterval(slideshow.timer);
+				}
+			};
+			slideshow.start();
+			carousel.addEventListener("mouseenter", function(){
+				this.classList.toggle("active");
+				slideshow.stop();
+			});
+			carousel.addEventListener("mouseleave", function(){
+				this.classList.toggle("active");
+				slideshow.start();
+			});
+			return carousel;
+		};
+		modules.carouselItem = function(){
+			var item, image;
+			item = document.createElement("div");
+			item.classList.add("item__carousel");
+
+			image = new Image();
+			image.src = ["assets/img/", this.name].join("");
+			image.addEventListener("load", function(){
+				item.style.backgroundImage = ["url(", image.src, ")"].join("");
+			});
+			return item;
 		};
 		modules.assets = function(){
 			var assets;
@@ -159,20 +256,22 @@ CONTNT = (function(){
 		};
 
 		render = function(){
+			var buffer;
 			buffer = new DocumentFragment();
 			buffer.appendChild(modules.project());
+			return buffer;
 		};
 
 		display = function(){
 			content.innerHTML = "";
-			content.appendChild(buffer);
+			content.appendChild(render());
 		};
 
 		return {
 			"render":render,
 			"display":display
 		};
-	};
+	}());
 
 	modules = {};
 	modules.container = function(){
@@ -183,7 +282,7 @@ CONTNT = (function(){
 		container = _container;
 	};
 	modules.menu = function(){
-		var menu, header, nav, activeItem;
+		var menu, header, nav, activeItem, click;
 		menu = document.createElement("aside");
 		menu.classList.add("menu__main");
 
@@ -199,45 +298,45 @@ CONTNT = (function(){
 		nav.classList.add("__main");
 		menu.appendChild(nav);
 
+		click = function(e){
+			if(!pages[this.name])
+				return console.error("Page " + this.name + " doesn't exist..");
+			pages[this.name].display();
+			if(activeItem){
+				activeItem.classList.remove("active");
+			}
+			activeItem = e.target;
+			activeItem.classList.add("active");
+		};
+
 		model.navigation.forEach(function(e, i){
-			var navItem, click;
+			var item;
 
-			navItem = modules.navItem.call(e);
-
-			click = function(){
-				console.log(this.name);
-				if(!pages[this.name])
-					return console.error("Page \'"+this.name+"\' doesn't exist.");
-				pages[this.name].display();
-
-				if(activeItem !== undefined)
-					activeItem.classList.remove("active");
-				activeItem = navItem;
-				activeItem.classList.add("active");
-			}.bind(e);
-			if(!e.children)
-				navItem.addEventListener("click", click);
-
-			nav.appendChild(navItem);
-			return navItem;
+			item = modules.navItem();
+			if(e.name === "projects"){
+				item.appendChild(modules.navItem());
+				item.firstElementChild.textContent = e.name;
+				e.children.forEach(function(f, n){
+					var child;
+					child = modules.navItem.call(f);
+					child.classList.add("child");
+					child.textContent = f.name;
+					child.addEventListener("click", click.bind(f));
+					item.appendChild(child);
+				});
+			} else{
+				item.textContent = e.name;
+				item.addEventListener("click", click.bind(e));
+			}
+			nav.appendChild(item);
 		});
+
 		container.appendChild(menu);
 	};
 	modules.navItem = function(){
 		var item;
 		item = document.createElement("div");
 		item.classList.add("item__main");
-		item.textContent = this.name;
-		if(this.children){
-			this.children.forEach(function(c, i){
-				var inner;
-				inner = modules.navItem.call(c);
-				item.appendChild(inner);
-				item.addEventListener("click", function(e){
-					pages[c.name].display();
-				});
-			});
-		};
 		return item;
 	};
 	modules.content = function(){
@@ -249,18 +348,10 @@ CONTNT = (function(){
 	};
 
 	build = function(){
-		for(var page in pages){
-			pages[page] = pages[page].call();
-		};
 		modules.container();
 		modules.menu();
 		modules.content();
-		for(var page in pages){
-			pages[page].render();
-			if(page === "pyrite"){
-				pages[page].display();
-			}
-		};
+		pages.home.display();
 	};
 
 	return {
