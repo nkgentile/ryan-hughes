@@ -7,7 +7,12 @@
 			"name":"resume"
 		},
 		{
-			"name":"projects"
+			"name":"projects",
+			"children":[
+				{
+					"name":"pyrite"
+				}
+			]
 		},
 		{
 			"name":"contact"
@@ -22,5 +27,57 @@
 			"I recently completed my masters and am now hoping to transfer my research interests and passions into a career in architecture&comma; starting with a masters in architecture&period;"
 		],
 		"portrait":"Profile.jpg"
+	},
+	"projects":{
+		"pyrite":{
+			"title":"pyrite",
+			"description":[
+				"Conceptually&comma; this project explores the intersections of orthographic projection&comma; scale and form&period; The form of the overall structure is defined by the intersection of two cubes of equal size&comma; one rotated 45 degrees from top&comma; right&comma; and front view&period; The result of this rotation creates a symmetrical structure in which the outline of the un-rotated cube is preserved in specific viewpoints&period; Because its symmetry is not perpendicular to the ground&comma; in perspective the form appears to always have one surface slipping away from view&period; A grid of 400 5&rsquo; x 5&rsquo; windows is projected orthographically onto the residual square outlines that exist in elevation&period; This frame problematizes scale as the grid of warped windows intersect floor plates and appears to belong to a structure much larger than eight floors&period; More graphic than it is structural&comma; an interior core supports the frame made out of a significantly lighter material like fiberglass or spandrel glass&period;",
+				"To accommodate 160&comma;000 square feet of leasable office space without warping the form&rsquo;s symmetry&comma; the interior is scaled to have a 50-foot-high&comma; 10&comma;000 square foot lobby proceeded by seven floors&comma; 15-foot high each&period; The structure is supported by three-foot thick steel beams along with four concrete cores that together include two fire stairs&comma; four elevators&comma; and eight bathrooms per floor&period; These key structural elements start at the base of the building and finish at the roof&period; Each floor is subsequently supported by a grid of one-foot-thick beams aligned to the same grid as the steel beams in an orientation that highlights the division of the floors between front and back&period; The floor plans are certainly not typical plan as the floor plates shift with the tapered exterior&comma; yet the cores remain in the center of each plan and provide starting points for separating the floors evenly between two or more tenants&period; No floors include demising walls so that each floor can be subdivided at the tenants&rsquo; request&comma; providing an ample amount of freedom to customize the lofty interiors&period; The contrast between interior and exterior for the building is thus defined by the freeform&comma; adaptable interiors with irregularly-arranged concrete cores juxtaposed with the highly ordered geometric exterior and complementary frame&period;"
+			],
+			"assets":{
+				"plans":[
+					"EigthFloor.svg",
+					"SitePlan.svg",
+					"FifthFloor.svg",
+					"SecondFloor.svg",
+					"SixthFloor.svg",
+					"FourthFloor.svg",
+					"SeventhFloor.svg",
+					"ThirdFloor.svg"
+				],
+				"elevations":[
+					"EastElevation.svg",
+					"NorthElevation.svg",
+					"WestElevation.svg",
+					"SouthElevation.svg"
+				],
+				"images":[
+					"Hughes, 1:16th Scale, East Elevation.jpg",
+					"Hughes, 1:16th Scale, North Elevation.jpg",
+					"Hughes, 1:16th Scale, South Elevation.jpg",
+					"Hughes, 1:16th Scale, West Elevation.jpg",
+					"Hughes, 1:32nd Scale Skin Model, East Elevation.jpg",
+					"Hughes, 1:32nd Scale Skin Model, North Elevation.jpg",
+					"Hughes, 1:32nd Scale Skin Model, South Elevation.jpg",
+					"Hughes, 1:32nd Scale Skin Model, West Elevation.jpg",
+					"Hughes, 1:8th Scale, Alternate Interior.jpg",
+					"Hughes, 1:8th Scale, Alternate Plan View.jpg",
+					"Hughes, 1:8th Scale, East Elevation.jpg",
+					"Hughes, 1:8th Scale, Interior View.jpg",
+					"Hughes, 1:8th Scale, Model Detail.jpg",
+					"Hughes, 1:8th Scale, North Elevation.jpg",
+					"Hughes, 1:8th Scale, Plan View.jpg",
+					"Hughes, 1:8th Scale, South Elevation.jpg",
+					"Hughes, 1:8th Scale, West Elevation.jpg",
+					"Hughes, Form Model Cover.JPG",
+					"Hughes, Form Model, East Elevation.jpg.jpg",
+					"Hughes, Form Model, North Elevation.jpg",
+					"Hughes, Form Model, South Elevation.jpg.jpg",
+					"Hughes, Form Model, West Elevation.jpg.jpg"
+				],
+				"model":""
+			}
+		}
 	}
 }

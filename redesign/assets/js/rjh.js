@@ -1,12 +1,8 @@
 "use strict";
-var CONTNT, Page;
-
-Page = function(){
-	var model, style;
-};
+var CONTNT;
 
 CONTNT = (function(){
-	var util, render, model, modules, pages;
+	var util, build, model, modules, menu, container, content, pages;
 
 	util = {};
 
@@ -23,15 +19,16 @@ CONTNT = (function(){
 			} catch(e){
 				return console.error("Invalid JSON...");
 			}
-			render.call(model);
+			build();
 		});
 		xhr.send();
 	}());
 
 	pages = {};
 	pages.home = function(){
-		var buffer, model, modules, render, display;
-		model = this;
+		var buffer, modules, render, display;
+
+		buffer = new DocumentFragment();
 
 		modules = {};
 		modules.gallery = function(){
@@ -42,7 +39,7 @@ CONTNT = (function(){
 				gallery.appendChild(
 					modules.card.call(model)
 				);
-			return gallery;
+			buffer.appendChild(gallery);
 		};
 		modules.card = function(){
 			var card;
@@ -51,25 +48,24 @@ CONTNT = (function(){
 			return card;
 		};
 
-		buffer = new DocumentFragment();
-		render = (function(){
-			buffer.appendChild(
-				modules.gallery()
-			);
-		}());
+		render = function(){
+			modules.gallery();
+		};
 
 		display = function(){
-			model.content.innerHTML = "";
-			model.content.appendChild(buffer);
+			content.innerHTML = "";
+			content.appendChild(buffer);
 		};
 
 		return {
+			"render":render,
 			"display":display
 		};
 	};
 	pages.bio = function(){
-		var buffer, model, modules, render, display;
-		model = this;
+		var buffer, modules, render, display;
+
+		buffer = new DocumentFragment();
 
 		modules = {};
 		modules.bio = function(){
@@ -84,85 +80,187 @@ CONTNT = (function(){
 			});
 		};
 
-		buffer = new DocumentFragment();
-		render = (function(){
+		render = function(){
 			var bio, portrait;
 			bio = modules.bio();
-		}());
+		};
 
 		display = function(){
-			model.content.innerHTML = "";
-			model.content.appendChild(buffer);
+			content.innerHTML = "";
+			content.appendChild(buffer);
 		};
 
 		return {
+			"render":render,
+			"display":display
+		};
+	};
+	pages.pyrite = function(){
+		var buffer, modules, render, display;
+
+		modules = {};
+		modules.title = function(){
+			var title;
+			title = document.createElement("h1");
+			title.classList.add("title__project");
+			title.textContent = model.projects.pyrite.title;
+			return title;
+		};
+		modules.assets = function(){
+			var assets;
+			assets = document.createElement("article");
+			assets.classList.add("assets__project");
+			assets.appendChild(modules.description());
+			assets.appendChild(modules.gallery());
+			return assets;
+		};
+		modules.description = function(){
+			var description;
+			description = document.createElement("div");
+			description.classList.add("description__project");
+			model.projects.pyrite.description.forEach(function(e, i){
+				var p;
+				p = document.createElement("p");
+				p.classList.add("description__project");
+				p.innerHTML = e;
+				description.appendChild(p);
+			});
+			return description;
+		};
+		modules.gallery = function(){
+			var gallery;
+			gallery = document.createElement("div");
+			gallery.classList.add("project__gallery");
+
+			for(var i=4; i--;){
+				var n;
+				n = document.createElement("div");
+				n.classList.add("carousel__gallery");
+				gallery.appendChild(n);
+			}
+
+			return gallery;
+		};
+		modules.assets = function(){
+			var assets;
+			assets = document.createElement("div");
+			assets.classList.add("assets__project");
+			assets.appendChild(modules.description());
+			assets.appendChild(modules.gallery());
+			return assets;
+		};
+		modules.project = function(){
+			var project;
+			project = document.createElement("div");
+			project.classList.add("project");
+			project.appendChild(modules.title());
+			project.appendChild(modules.assets());
+			return project;
+		};
+
+		render = function(){
+			buffer = new DocumentFragment();
+			buffer.appendChild(modules.project());
+		};
+
+		display = function(){
+			content.innerHTML = "";
+			content.appendChild(buffer);
+		};
+
+		return {
+			"render":render,
 			"display":display
 		};
 	};
 
 	modules = {};
 	modules.container = function(){
-		var container;
-		container = document.createElement("div");
-		container.classList.add("container__main");
-		document.body.appendChild(container);
-		this.container = container;
+		var _container;
+		_container = document.createElement("div");
+		_container.classList.add("container__main");
+		document.body.appendChild(_container);
+		container = _container;
 	};
 	modules.menu = function(){
-		var menu, header, nav;
+		var menu, header, nav, activeItem;
 		menu = document.createElement("aside");
 		menu.classList.add("menu__main");
 
 		header = document.createElement("h1");
 		header.classList.add("header__main");
 		header.textContent = "ryan hughes";
+		header.addEventListener("click", function(){
+			pages.home.display();
+		});
 		menu.appendChild(header);
 
 		nav = document.createElement("nav");
 		nav.classList.add("__main");
 		menu.appendChild(nav);
 
-		this.navigation.forEach(function(e, i){
-			var navItem;
+		model.navigation.forEach(function(e, i){
+			var navItem, click;
+
 			navItem = modules.navItem.call(e);
+
+			click = function(){
+				console.log(this.name);
+				if(!pages[this.name])
+					return console.error("Page \'"+this.name+"\' doesn't exist.");
+				pages[this.name].display();
+
+				if(activeItem !== undefined)
+					activeItem.classList.remove("active");
+				activeItem = navItem;
+				activeItem.classList.add("active");
+			}.bind(e);
+			if(!e.children)
+				navItem.addEventListener("click", click);
+
 			nav.appendChild(navItem);
 			return navItem;
 		});
-		this.container.appendChild(menu);
-		this.menu = menu;
+		container.appendChild(menu);
 	};
 	modules.navItem = function(){
-		var item, click;
+		var item;
 		item = document.createElement("div");
 		item.classList.add("item__main");
 		item.textContent = this.name;
-
-		click = function(){
-			if(!pages[this.name])
-				return console.error("Page \'"+this.name+"\' doesn't exist.");
-			console.log(this.name);
-			pages[this.name].display();
-		}.bind(this);
-		item.addEventListener("click", click);
-
+		if(this.children){
+			this.children.forEach(function(c, i){
+				var inner;
+				inner = modules.navItem.call(c);
+				item.appendChild(inner);
+				item.addEventListener("click", function(e){
+					pages[c.name].display();
+				});
+			});
+		};
 		return item;
 	};
 	modules.content = function(){
-		var content;
-		content = document.createElement("div");
-		content.classList.add("content__main");
-		this.container.appendChild(content);
-		this.content = content;
+		var _content;
+		_content = document.createElement("div");
+		_content.classList.add("content__main");
+		container.appendChild(_content);
+		content = _content;
 	};
 
-	render = function(){
-		modules.container.call(model);
-		modules.menu.call(model);
-		modules.content.call(model);
+	build = function(){
 		for(var page in pages){
-			pages[page] = pages[page].call(model);
+			pages[page] = pages[page].call();
 		};
-		pages.home.display();
+		modules.container();
+		modules.menu();
+		modules.content();
+		for(var page in pages){
+			pages[page].render();
+			if(page === "pyrite"){
+				pages[page].display();
+			}
+		};
 	};
 
 	return {

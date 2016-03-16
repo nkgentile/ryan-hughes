@@ -1,0 +1,43 @@
+div.project{
+	flex: auto;
+	max-width: 1200px;
+
+	display: flex;
+	flex-flow: row wrap;
+	align-content: flex-start;
+	justify-content: space-around;
+}
+
+h1.title__project{
+	margin: 0;
+	flex: auto;
+	text-align: right;
+	transform: translateX(-100px);
+}
+
+div.assets__project{
+	flex: auto;
+
+	display: flex;
+	flex-flow: row nowrap;
+}
+
+div.description__project{
+	flex: 0 0 450px;
+	padding-right: 15px;
+}
+
+div.project__gallery{
+	flex: auto;
+
+	display: flex;
+	flex-flow: row wrap;
+	align-content: flex-start;
+}
+
+div.carousel__gallery{
+	margin: 15px;
+	width: 300px;
+	height: 300px;
+	outline: 1px solid red;
+}

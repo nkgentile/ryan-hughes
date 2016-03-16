@@ -5,6 +5,7 @@
 	<style>
 		@import url("assets/css/main.css");
 		@import url("assets/css/home.css");
+		@import url("assets/css/project.css");
 	</style>
 	<script src="assets/js/rjh.js"></script>
 </head>
