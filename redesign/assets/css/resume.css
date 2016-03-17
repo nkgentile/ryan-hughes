@@ -1,10 +1,4 @@
 div#resume{
-	display: flex;
-	flex-flow: column nowrap;
-}
-
-div#resume > * {
-	flex: 0 0 auto;
 	width: 600px;
 }
 
