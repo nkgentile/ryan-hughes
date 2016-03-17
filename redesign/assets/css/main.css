@@ -3,7 +3,7 @@
 	src: url("../fonts/Brandon_light.otf");
 }
 body{
-	margin: 30px 0;
+	margin: 30px;
 	font-family: Brandon Grotesque Light;
 	display: flex;
 	justify-content: stretch;
@@ -20,13 +20,11 @@ div.container__main{
 	justify-content: center;
 
 	position: relative;
-
 }
 
 aside.menu__main{
 	min-width: 150px;
 	flex: 0 1 auto;
-	padding: 40px;
 
 	position: absolute;
 	top: 0;
@@ -96,8 +94,9 @@ div.item__main.parent.active .child{
 }
 
 div.content__main{
+	min-width: 600px;
+	max-width: 1200px;
 	flex: auto;
 	display: inline-flex;
-	max-width: 1200px;
-	overflow: auto;
+	justify-content: center;
 }

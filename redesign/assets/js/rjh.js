@@ -128,14 +128,6 @@ CONTNT = (function(){
 			title.textContent = model.projects.pyrite.title;
 			return title;
 		};
-		modules.assets = function(){
-			var assets;
-			assets = document.createElement("article");
-			assets.classList.add("assets__project");
-			assets.appendChild(modules.description());
-			assets.appendChild(modules.gallery());
-			return assets;
-		};
 		modules.description = function(){
 			var description;
 			description = document.createElement("div");
@@ -148,6 +140,12 @@ CONTNT = (function(){
 				description.appendChild(p);
 			});
 			return description;
+		};
+		modules.overlay = function(){
+			var overlay;
+			overlay = document.createElement("div");
+			overlay.id = "overlay";
+			return overlay;
 		};
 		modules.gallery = function(){
 			var gallery;
@@ -198,9 +196,102 @@ CONTNT = (function(){
 			var item;
 			item = document.createElement("div");
 			item.classList.add("carousel__gallery");
+			item.appendChild(modules.obj());
+			item.addEventListener("click", function(){
+				var overlay, close, obj;
+
+				obj = modules.obj();
+				
+				overlay = document.getElementById("overlay");
+				overlay.innerHTML = "";
+				overlay.appendChild(obj);
+				overlay.classList.add("active");
+
+				close = document.createElement("div");
+				close.classList.add("close");
+				close.addEventListener("click", function(){
+					overlay.classList.remove("active");
+					obj.remove();
+				});
+				overlay.appendChild(close);
+			});
 			return item;
 		};
-		modules.carousel = function(){
+		modules.obj = function(){
+			var container, camera, pivot, scene, renderer;
+			var mouseX = 0, mouseY = 0;
+			init();
+			animate();
+			function init() {
+				container = document.createElement( 'div' );
+				container.classList.add("item__carousel");
+				camera = new THREE.PerspectiveCamera( 45, 300 / 300, 1, 50 );
+				camera.position.z = 20;
+				// scene
+				scene = new THREE.Scene();
+				var ambient = new THREE.AmbientLight( 0x444444 );
+				scene.add( ambient );
+				
+				var directionalLight = new THREE.DirectionalLight( 0xaaaaaa );
+				directionalLight.position.set( 20, 20, 20 );
+				scene.add( directionalLight );
+				
+				pivot = new THREE.Group();
+				scene.add(pivot);
+
+				// texture
+				var manager = new THREE.LoadingManager();
+				manager.onProgress = function ( item, loaded, total ) {
+					console.log( item, loaded, total );
+				};
+				var texture = new THREE.Texture();
+				var onProgress = function ( xhr ) {
+					if ( xhr.lengthComputable ) {
+						var percentComplete = xhr.loaded / xhr.total * 100;
+						console.log( Math.round(percentComplete, 2) + '% downloaded' );
+					}
+				};
+				var onError = function ( xhr ) {
+				};
+				var loader = new THREE.ImageLoader( manager );
+				loader.load( 'assets/img/board.jpg', function ( image ) {
+					texture.image = image;
+					texture.needsUpdate = true;
+				} );
+				// model
+				var loader = new THREE.OBJLoader( manager );
+				loader.load( 'assets/img/pyrite.obj', function ( object ) {
+					object.traverse( function ( child ) {
+						if ( child instanceof THREE.Mesh ) {
+							child.material.map = texture;
+						}
+					} );
+					var box = new THREE.Box3().setFromObject( object );
+					box.center( object.position ); // this re-sets the mesh position
+					object.position.multiplyScalar( - 1 );
+					pivot.add( object );
+				}, onProgress, onError );
+				//
+				renderer = new THREE.WebGLRenderer();
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( 900, 900 );
+				renderer.setClearColor(0xffffff);
+				renderer.domElement.style.maxWidth = "100%";
+				renderer.domElement.style.maxHeight = "100%";
+				container.appendChild( renderer.domElement );
+			}
+			//
+			function animate() {
+				requestAnimationFrame( animate );
+				render();
+			}
+			function render() {
+				pivot.rotation.y += 0.001;
+				renderer.render( scene, camera );
+			}
+		return container;
+		};
+		modules.carousel = function(i){
 			var carousel, slideshow;
 			carousel = document.createElement("div");
 			carousel.classList.add("carousel__gallery");
@@ -244,7 +335,30 @@ CONTNT = (function(){
 				this.classList.toggle("active");
 				slideshow.start();
 			});
+			carousel.addEventListener("click", function(){
+				var overlay, close, image;
+
+				image = carousel.children[slideshow.active];
+
+				overlay = document.getElementById("overlay");
+				overlay.innerHTML = "";
+				overlay.appendChild(image);
+				overlay.classList.add("active");
+
+				close = document.createElement("div");
+				close.classList.add("close");
+				close.addEventListener("click", function(){
+					overlay.classList.remove("active");
+				});
+				overlay.appendChild(close);
+			});
 			return carousel;
+		};
+		modules.arrow = function(){
+			var arrow;
+			arrow = document.createElement("div");
+			arrow.classList.add("arrow");
+			return arrow;
 		};
 		modules.carouselItem = function(){
 			var item, image;
@@ -264,6 +378,7 @@ CONTNT = (function(){
 			assets.classList.add("assets__project");
 			assets.appendChild(modules.description());
 			assets.appendChild(modules.gallery());
+			assets.appendChild(modules.overlay());
 			return assets;
 		};
 		modules.project = function(){

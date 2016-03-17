@@ -9,6 +9,8 @@
 		@import url("assets/css/resume.css");
 		@import url("assets/css/bio.css");
 	</style>
+	<script src="assets/js/three.min.js"></script>
+	<script src="assets/js/OBJLoader.js"></script>
 	<script src="assets/js/rjh.js"></script>
 </head>
 <body>

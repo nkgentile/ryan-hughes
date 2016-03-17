@@ -20,6 +20,7 @@ div.assets__project{
 
 	display: flex;
 	flex-flow: row nowrap;
+	position: relative;
 }
 
 div.description__project{
@@ -36,10 +37,10 @@ div.project__gallery{
 }
 
 div.carousel__gallery{
-	flex: auto;
 	margin: 15px;
 	width: 300px;
 	height: 300px;
+	flex: auto;
 	position: relative;
 	overflow: hidden;
 	display: flex;
@@ -54,4 +55,37 @@ div.item__carousel{
 	background-position: center;
 	background-size: contain;
 	background-repeat: no-repeat;
+}
+
+div#overlay{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: white;
+	opacity: 0;
+	transition: 200ms opacity ease-in-out;
+	top: 0; 
+	left: 0;
+	display: none;
+}
+
+div#overlay.active{
+	display: block;
+	opacity: 1;
+}
+
+div#overlay div.carousel__gallery{
+	width: 100%;
+	height: 100%;
+}
+
+div#overlay div.close{
+	background-image: url("../img/close.svg");
+	background-size: cover;
+	background-position: center;
+	width: 45px;
+	height: 45px;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
