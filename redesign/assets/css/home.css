@@ -1,9 +1,11 @@
 div.gallery__home{
+	max-width: 1200px;
 	display: -webkit-flex;
 	display: flex;
 
 	-webkit-flex-flow: row wrap;
 	flex-flow: row wrap;
+	align-content: flex-start;
 
 	padding: 5px;
 }

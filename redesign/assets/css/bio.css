@@ -1,8 +1,10 @@
 div#bio{
+	max-width: 800px;
 	flex: auto;
 
 	display: flex;
 	flex-flow: row wrap;
+	align-content: flex-start;
 }
 
 div#about{
@@ -13,8 +15,8 @@ div#about{
 	flex-flow: column nowrap;
 }
 
-div#about{
-	flex: 1 0 auto;
+div#about p{
+	flex: 0 0 auto;
 	padding: 0 30px;
 }
 

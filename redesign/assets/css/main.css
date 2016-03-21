@@ -94,9 +94,9 @@ div.item__main.parent.active .child{
 }
 
 div.content__main{
-	min-width: 600px;
-	max-width: 1200px;
-	flex: auto;
+	max-width: 80vw;
+	flex: 1 1 auto;
 	display: inline-flex;
+	flex-flow: row wrap;
 	justify-content: center;
 }
