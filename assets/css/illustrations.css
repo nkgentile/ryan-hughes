@@ -1,0 +1,40 @@
+div#illustrations{
+	display: flex;
+	flex-flow: row wrap;
+}
+
+div.card__illustrations{
+	width: 300px;
+	height: 300px;
+	margin: 15px;
+	flex: auto;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	position: relative;
+}
+
+div.caption__card{
+	opacity: 0;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	transition: 100ms opacity ease-in-out;
+	color: white;
+	text-align: center;
+}
+
+div.card__illustrations.active div.caption__card{
+	opacity: 1;
+}
+
+div#overlay.active div.caption__card{
+	opacity: 1;
+	background-color: white;
+	font-size: 20pt;
+	text-align: left;
+	color: black;
+	padding: 15px;
+	width: auto;
+}
