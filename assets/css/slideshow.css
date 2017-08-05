@@ -1,0 +1,18 @@
+.slideshow{
+    position: relative;
+    
+    overflow: hidden;
+}
+
+.slideshow .slider{
+    height: 100%;
+
+    display: flex;
+    flex-flow: row nowrap;
+
+}
+
+.fullPage{
+    width: 100vw;
+    height: 100vh;
+}

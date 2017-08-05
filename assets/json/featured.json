@@ -1,0 +1,16 @@
+{
+    "slides": [
+        {
+            "id": 0,     
+            "image_src": "assets/images/Brice Marden, The Muses.jpg"
+        },
+        {
+            "id": 1,
+            "image_src": "assets/images/8th Floor, Detail.jpg"
+        },
+        {
+            "id": 2,
+            "image_src": "assets/images/Building Together.jpg"
+        }
+    ]
+}
