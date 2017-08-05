@@ -10,6 +10,7 @@
 		@import url("assets/css/bio.css");
 		@import url("assets/css/illustrations.css");
 	</style>
+	<link rel="stylesheet" media="(max-width: 800px)" href="assets/css/mobile.css" />
 	<script src="assets/js/three.min.js"></script>
 	<script src="assets/js/OBJLoader.js"></script>
 	<script src="assets/js/rjh.js"></script>

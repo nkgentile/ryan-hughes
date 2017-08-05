@@ -1,0 +1,12 @@
+body{
+}
+
+div.container__main{
+	flex-flow: column nowrap;
+}
+
+aside.menu__main h1{
+	text-align: center;
+}
+
+aside.menu__main
