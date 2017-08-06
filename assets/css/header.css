@@ -1,4 +1,6 @@
-header{
+header{                                     
+    background-color: white;
+
     position: fixed;
     top: 0;
     left: 0;
@@ -7,13 +9,66 @@ header{
     box-sizing: border-box;
     padding: 1em;
 
-    background-color: white;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
 header a#name, header a#name:visited{
     color: black;
 
-    font-family: Futura;
     font-weight: bold;
     font-size: 2em;
+}
+
+header nav{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+header nav > *{
+    padding: 0.5em 1em;
+    margin: 0 1em;
+    
+    position: relative;
+}
+
+div.item > div.dropdown-container{
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    transform: scale(1, 0);
+    transform-origin: top center;
+
+    overflow: hidden;
+}
+
+div.item div.dropdown{
+    transform: translateY(-200%);
+
+    transition: transform 150ms ease-out;
+}
+
+div.item.open div.dropdown-container{
+    transform: scale(1, 1);
+}
+
+div.item.open div.dropdown{
+    transform: translateY(0);
+}
+
+div.dropdown div.item{
+    margin: 1em;
 }

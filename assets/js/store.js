@@ -6,6 +6,33 @@ const store = new Vuex.Store({
     state: {
         name: 'Ryan Hughes',
 
+        navigation: [
+            {
+                name: 'Projects',
+                type: 'text'
+            },
+            {
+                name: 'About',
+                type: 'text'
+            },
+            {
+                name: 'Contact',
+                type: 'text',
+                children: [
+                    {
+                        name: 'Tumblr',
+                        type: 'icon',
+                        fa: 'fa-tumblr'
+                    },
+                    {
+                        name: 'Instagram',
+                        type: 'icon',
+                        fa: 'fa-instagram'
+                    }
+                ]
+            }
+        ],
+
         index: 0,
         slides: [],
         isLeftArrowActive: false,
