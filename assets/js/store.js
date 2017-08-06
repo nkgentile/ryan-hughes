@@ -34,23 +34,51 @@ const store = new Vuex.Store({
         ],
 
         index: 0,
-        slides: [],
         isLeftArrowActive: false,
-        isRightArrowActive: false
+        isRightArrowActive: false,
+
+        projects: [
+			{
+				name: "Marden",
+				images: [
+					{
+						source: "assets/images/9th\ Floor,\ Detail.jpg",
+						caption: ""
+					},
+					{
+						source: "assets/images/7thFloor,\ Detail.jpg",
+						caption: ""
+					},
+					{
+						source: "assets/images/Building\ Together.jpg",
+						caption: ""
+					}
+				],
+				feature: true,
+				hero_image: "assets/images/8th\ Floor,\ Detail.jpg"
+			},
+            {
+                name: "Pyrite",
+                images: [
+                ],
+                feature: true,
+                hero_image: "assets/images/Hughes,\ Form\ Model\ Cover.jpg"
+            }
+		]
     },
+    
+    getters:{
+    	getFeaturedProjects: (state) => {
+    		return state.projects.filter( a => a.feature );
+    	}
+    },
+    
     mutations: {
-        populateSlides(state, payload){
-            state.slides = payload;
+        increment(state){
+            state.index += 1;
         },
-        next(state){
-            state.index = (state.index !== state.slides.length-1) ?
-                state.index+1 :
-                state.slides.length-1;
-        },
-        prev(state){
-            state.index = (state.index !== 0) ?
-               state.index-1 :
-               0; 
+        decrement(state){
+            state.index -= 1;
         },
         activateLeftArrow(state){
             state.isLeftArrowActive = true;
@@ -65,10 +93,7 @@ const store = new Vuex.Store({
             state.isRightArrowActive = false;
         }
     },
+    
     actions: {
-        getSlides(){
-            axios.get('assets/json/featured.json')
-            .then( r => store.commit('populateSlides', r.data.slides) )
-        }
     }
 });

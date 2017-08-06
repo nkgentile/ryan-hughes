@@ -1,15 +1,20 @@
 'use strict';
 
 Vue.component('slideshow-slider', {
-    computed: Vuex.mapState({
-        slides: state => state.slides,
+    computed: Object.assign( 
+        Vuex.mapState({
         translation: state => `translateX(-${state.index}00%)`
-    }),
+        }),
+
+        Vuex.mapGetters({
+            slides: 'getFeaturedProjects'
+        })
+    ),
 
     template: `
         <div class="slider" :style="{ transform: translation }">
             <template v-for="(slide, index) in slides">
-                <img class="slide" :src="slide.image_src"/>
+                <img class="slide" :src="slide.hero_image"/>
             </template>
         </div>
     `

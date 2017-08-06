@@ -1,16 +1,23 @@
 {
-    "slides": [
+    "projects": [
         {
-            "id": 0,     
-            "image_src": "assets/images/Brice Marden, The Muses.jpg"
-        },
-        {
-            "id": 1,
-            "image_src": "assets/images/8th Floor, Detail.jpg"
-        },
-        {
-            "id": 2,
-            "image_src": "assets/images/Building Together.jpg"
+            "name": "Marden"
+            "images": [
+                {
+                    "source": "9th\ Floor,\ Detail.jpg",
+                    "caption": ""
+                },
+                {
+                    "source": "7thFloor,\ Detail.jpg",
+                    "caption": ""
+                },
+                {
+                    "source": "Building\ Together.jpg",
+                    "caption": ""
+                }
+            ],
+            "feature": true,
+            "hero_image": "8th\ Floor,\ Detail.jpg"
         }
     ]
 }

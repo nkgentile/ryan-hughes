@@ -2,7 +2,6 @@
 
 Vue.component('featured-slideshow', {
     created(){
-        this.$store.dispatch('getSlides');
     },
 
     template: `

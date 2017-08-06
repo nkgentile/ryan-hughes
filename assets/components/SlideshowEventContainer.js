@@ -12,21 +12,46 @@ Vue.component('slideshow-event-container', {
         });
     },
 
-    methods: Vuex.mapMutations([
-        'prev',
-        'next',
+    methods: Object.assign(
+        {
+            next(){
+                if(this.index === this.slides.length-1)
+                    return;
 
-        'activateLeftArrow',
-        'deactivateLeftArrow',
+                this.increment();
+            },
 
-        'activateRightArrow',
-        'deactivateRightArrow'
-    ]),
+            prev(){
+                if(this.index === 0)
+                    return;
 
-    computed: Vuex.mapState([
-        'isLeftArrowActive',
-        'isRightArrowActive'
-    ]),
+                this.decrement();
+            }
+        },
+        
+        Vuex.mapMutations([
+            'increment',
+            'decrement',
+
+            'activateLeftArrow',
+            'deactivateLeftArrow',
+
+            'activateRightArrow',
+            'deactivateRightArrow'
+        ])
+    ),
+
+    computed: Object.assign(
+        Vuex.mapState([
+            'index',
+            'isLeftArrowActive',
+            'isRightArrowActive'
+        ]),
+
+        Vuex.mapGetters({
+            slides: 'getFeaturedProjects'
+        }),
+    ),
 
 
     template: `
