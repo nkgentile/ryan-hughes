@@ -2,12 +2,18 @@
 
 Vue.component('slideshow-event-container', {
     created(){
+        var self = this;
         window.addEventListener("keydown", function(e){
-            console.log(e);
+            console.log(e.key);
             switch(e.key){
-                case "ArrowLeft": this.prev();
-                case "ArrowRight": this.next();
-                default: return;
+                case "ArrowLeft":
+                    self.prev();
+                    break;
+                case "ArrowRight":
+                    self.next();
+                    break;
+                default:
+                    break;
             }
         });
     },
