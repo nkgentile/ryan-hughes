@@ -2,11 +2,12 @@
 
 Vue.component('header-bar', {
     computed: Vuex.mapState([
-        'name'
+        'name',
+        'color'
     ]),
     
     template: `
-        <header>
+        <header :class="color">
             <a id="name">{{ name }}</a>
             <navigation-bar></navigation-bar>
         </header>

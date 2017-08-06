@@ -40,7 +40,6 @@
 .slideshow .arrow{
     padding: 1em;
 
-    background-color: white;
     border-radius: 100%;
 
     opacity: 0;
@@ -63,8 +62,52 @@
 
 .slideshow .slide{
     flex: 0 0 100%;
-    max-width: 100%;
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 3em;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    position: relative;
+}
+
+.slideshow .slide img{
+    position: absolute;
+    top: 0;
+    left: 0;
     object-fit: cover;
+    width: 100%;
+}
+
+.slideshow .slide figcaption{
+    font-size: 1.5em;
+    font-weight: bold;
+
+    box-sizing: border-box;
+    padding: 1em;
+
+    z-index: 1;
+
+    //border: 0.1em solid transparent;
+}
+
+.slideshow.white .slide figcaption{
+    //border-color: white;
+    background-color: white;
+    color: black;
+}
+
+.slideshow.black .slide figcaption{
+    //border-color: black;
+    background-color: black;
+    color: white;
+}
+
+.slideshow .slide.active figcaption{
 }
 
 .full-page{

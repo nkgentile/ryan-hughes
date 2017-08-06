@@ -1,6 +1,4 @@
 header{                                     
-    background-color: white;
-
     position: fixed;
     top: 0;
     left: 0;
@@ -17,8 +15,6 @@ header{
 }
 
 header a#name, header a#name:visited{
-    color: black;
-
     font-weight: bold;
     font-size: 2em;
 }

@@ -2,36 +2,42 @@
 
 Vue.component('slideshow-event-container', {
     created(){
-        var self = this;
-        window.addEventListener("keydown", function(e){
-            console.log(e.key);
+        window.addEventListener("keydown", (e) => {
             switch(e.key){
                 case "ArrowLeft":
-                    self.prev();
+                    this.prev();
                     break;
                 case "ArrowRight":
-                    self.next();
+                    this.next();
                     break;
                 default:
                     break;
             }
         });
+
+        this.changeColor(this.slides[0].color);
     },
 
     methods: Object.assign(
         {
             next(){
-                if(this.index === this.slides.length-1)
+                if(this.index === this.slides.length-1){
                     return;
+                }
 
                 this.increment();
+
+                this.changeColor(this.slides[this.index].color);
             },
 
             prev(){
-                if(this.index === 0)
+                if(this.index === 0){
                     return;
+                }
 
                 this.decrement();
+
+                this.changeColor(this.slides[this.index].color);
             }
         },
         
@@ -43,7 +49,9 @@ Vue.component('slideshow-event-container', {
             'deactivateLeftArrow',
 
             'activateRightArrow',
-            'deactivateRightArrow'
+            'deactivateRightArrow',
+
+            'changeColor'
         ])
     ),
 

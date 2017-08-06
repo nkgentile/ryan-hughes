@@ -37,6 +37,8 @@ const store = new Vuex.Store({
         isLeftArrowActive: false,
         isRightArrowActive: false,
 
+        color: "white",
+
         projects: [
 			{
 				name: "Marden",
@@ -55,14 +57,16 @@ const store = new Vuex.Store({
 					}
 				],
 				feature: true,
-				hero_image: "assets/images/8th\ Floor,\ Detail.jpg"
+				hero_image: "assets/images/8th\ Floor,\ Detail.jpg",
+                color: "black"
 			},
             {
                 name: "Pyrite",
                 images: [
                 ],
                 feature: true,
-                hero_image: "assets/images/Hughes,\ Form\ Model\ Cover.jpg"
+                hero_image: "assets/images/Hughes,\ Form\ Model\ Cover.jpg",
+                color: "white"
             }
 		]
     },
@@ -91,6 +95,9 @@ const store = new Vuex.Store({
         },
         deactivateRightArrow(state){
             state.isRightArrowActive = false;
+        },
+        changeColor(state, payload){
+            state.color = payload
         }
     },
     

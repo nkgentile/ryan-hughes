@@ -3,7 +3,8 @@
 Vue.component('slideshow-slider', {
     computed: Object.assign( 
         Vuex.mapState({
-        translation: state => `translateX(-${state.index}00%)`
+            active: state => state.index,
+            translation: state => `translateX(-${state.index}00%)`
         }),
 
         Vuex.mapGetters({
@@ -13,9 +14,10 @@ Vue.component('slideshow-slider', {
 
     template: `
         <div class="slider" :style="{ transform: translation }">
-            <template v-for="(slide, index) in slides">
-                <img class="slide" :src="slide.hero_image"/>
-            </template>
+            <figure v-for="(slide, index) in slides" class="slide" :class="{ active: active === index }">
+                <img :src="slide.hero_image"/>
+                <figcaption>{{ slide.name }}</figcaption>
+            </figure>
         </div>
     `
 });

@@ -9,5 +9,18 @@ body{
 
 a, a:visited{
     text-decoration: none;
+}
+
+*{
+    transition: color 300ms linear;
+}
+
+.black *{
     color: black;
 }
+
+.white *{
+    color: white;
+}
+
+
