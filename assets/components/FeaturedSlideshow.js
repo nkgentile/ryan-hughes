@@ -5,19 +5,10 @@ Vue.component('featured-slideshow', {
         this.$store.dispatch('getSlides');
     },
 
-    computed: {
-        slides(){
-            return this.$store.state.slides;
-        }
-    },
-
     template: `
-         <section class="slideshow fullPage">
-            <div class="slider">
-            <template v-for="(slide, index) in slides">
-                <img :src="slide.image_src"/>
-            </template>
-            </div>
+         <section class="slideshow full-page">
+            <slideshow-slider></slideshow-slider>
+            <slideshow-event-container></slideshow-event-container>
         </section>
     `
 });
