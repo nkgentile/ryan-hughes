@@ -4,6 +4,8 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
+        name: 'Ryan Hughes',
+
         index: 0,
         slides: [],
         isLeftArrowActive: false,

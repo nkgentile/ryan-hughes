@@ -1,0 +1,19 @@
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    box-sizing: border-box;
+    padding: 1em;
+
+    background-color: white;
+}
+
+header a#name, header a#name:visited{
+    color: black;
+
+    font-family: Futura;
+    font-weight: bold;
+    font-size: 2em;
+}
