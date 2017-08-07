@@ -39,7 +39,7 @@ const store = new Vuex.Store({
         isLeftArrowActive: false,
         isRightArrowActive: false,
 
-        color: "white",
+        color: "black",
 
         projects: [
 			{
