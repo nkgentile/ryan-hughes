@@ -46,7 +46,7 @@ Vue.component('navigation-item', {
 
     template: `
         <div class="item" :class="{ open: isOpen }" v-on="{ mouseenter: open, mouseleave: close }">
-            <a href="" :class="[ {fa: isIcon }, isIcon ? model.fa : '' ]">{{ isIcon ? '' : model.name }}</a>
+            <router-link :to="{ path: model.route }" :class="[ {fa: isIcon }, isIcon ? model.fa : '' ]">{{ isIcon ? '' : model.name }}</router-link>
             <span v-if="isFolder">+</span>
             <div class="dropdown-container" v-if="isFolder">
                <div class="dropdown">

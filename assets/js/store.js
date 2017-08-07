@@ -9,11 +9,13 @@ const store = new Vuex.Store({
         navigation: [
             {
                 name: 'Projects',
-                type: 'text'
+                type: 'text',
+                route: 'projects'
             },
             {
                 name: 'About',
-                type: 'text'
+                type: 'text',
+                route: 'about'
             },
             {
                 name: 'Contact',
