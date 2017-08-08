@@ -2,6 +2,6 @@
 
 const Projects = Vue.extend({
     template: `
-        <h1>Projects</h1>
+        <project-grid></project-grid>
     `
 });

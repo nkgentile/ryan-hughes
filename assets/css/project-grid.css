@@ -1,0 +1,22 @@
+.grid-container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: repeat(3, 20em);
+    grid-auto-rows: 20em;
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+
+    list-style-type: none;
+    padding: 0;
+}
+
+.grid .item{
+    display: block;
+    outline: 1px solid black;
+}

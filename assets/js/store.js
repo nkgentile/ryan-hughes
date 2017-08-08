@@ -69,6 +69,14 @@ const store = new Vuex.Store({
                 feature: true,
                 hero_image: "assets/images/Hughes,\ Form\ Model\ Cover.jpg",
                 color: "white"
+            },
+            {
+                name: "Illustrations",
+                images: [
+                ],
+                feature: true,
+                hero_image: "assets/images/Smoke.jpg",
+                color: "black"
             }
 		]
     },
