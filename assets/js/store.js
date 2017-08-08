@@ -7,7 +7,7 @@ const store = new Vuex.Store({
         navigation: [
             {
                 name: 'Ryan Hughes',
-                route: ''
+                route: 'home'
             },
             {
                 name: 'Projects',

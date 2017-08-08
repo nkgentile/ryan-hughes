@@ -3,6 +3,7 @@
 const routes = [
     {
         path: '/',
+        alias: '/home',
         component: Home,
         props: {
             fullpage: true

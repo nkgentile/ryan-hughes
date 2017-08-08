@@ -56,8 +56,10 @@
 
 .grid-item.black figcaption{
     background-color: white;
+    color: black;
 }
 
 .grid-item.white figcaption{
     background-color: black;
+    color: white;
 }
