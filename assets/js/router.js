@@ -3,15 +3,24 @@
 const routes = [
     {
         path: '/',
-        component: Home
+        component: Home,
+        props: {
+            fullpage: true
+        }
     },
     {
         path: '/projects',
-        component: Projects
+        component: Projects,
+        props: {
+            fullpage: false
+        }
     },
     {
         path: '/projects/:slug',
-        component: Project
+        component: Project,
+        props: {
+            fullpage: false
+        }
     }
 ];
 

@@ -1,7 +1,17 @@
 'use strict';
 
 const Home = Vue.extend({
+    props: {
+        fullpage: {
+            type: Boolean,
+            default: false
+        }
+    },
+
     template: `
-        <featured-slideshow></featured-slideshow>
+        <section>
+            <header-bar :class="{floating: fullpage}"></header-bar>
+            <featured-slideshow></featured-slideshow>
+        </section>
     `
 });

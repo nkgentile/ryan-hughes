@@ -1,7 +1,17 @@
 'use strict';
 
 const Projects = Vue.extend({
+    props: {
+        fullpage: {
+            type: Boolean,
+            default: false
+        }
+    },
+
     template: `
-        <project-grid></project-grid>
+        <section>
+            <header-bar :class="{ floating: fullpage }"></header-bar>
+            <project-grid></project-grid>
+        </section>
     `
 });
