@@ -62,7 +62,8 @@ const store = new Vuex.Store({
 				],
 				feature: true,
 				hero_image: "assets/images/8th\ Floor,\ Detail.jpg",
-                color: "black"
+                color: "black",
+                slug: "marden"
 			},
             {
                 name: "Pyrite",
@@ -70,7 +71,8 @@ const store = new Vuex.Store({
                 ],
                 feature: true,
                 hero_image: "assets/images/Hughes,\ Form\ Model\ Cover.jpg",
-                color: "white"
+                color: "white",
+                slug: "pyrite"
             },
             {
                 name: "Illustrations",
@@ -78,7 +80,8 @@ const store = new Vuex.Store({
                 ],
                 feature: true,
                 hero_image: "assets/images/Smoke.jpg",
-                color: "black"
+                color: "black",
+                slug: "illustrations"
             }
 		]
     },

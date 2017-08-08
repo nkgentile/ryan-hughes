@@ -10,7 +10,7 @@ const routes = [
         component: Projects
     },
     {
-        path: '/projects/:name',
+        path: '/projects/:slug',
         component: Project
     }
 ];
