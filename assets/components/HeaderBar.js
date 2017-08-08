@@ -8,7 +8,6 @@ Vue.component('header-bar', {
     
     template: `
         <header :class="color">
-            <a id="name">{{ name }}</a>
             <navigation-bar></navigation-bar>
         </header>
     `

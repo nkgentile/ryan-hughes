@@ -4,9 +4,11 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state: {
-        name: 'Ryan Hughes',
-
         navigation: [
+            {
+                name: 'Ryan Hughes',
+                route: ''
+            },
             {
                 name: 'Projects',
                 type: 'text',

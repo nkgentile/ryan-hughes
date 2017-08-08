@@ -7,7 +7,7 @@ Vue.component('navigation-bar', {
 
     template: `
         <nav>
-            <navigation-item v-for="(link, index) in navigation" :model='link' key="index"></navigation-item>
+            <navigation-item v-for="(link, index) in navigation" :model="link" key="index"></navigation-item>
         </nav>
     `
 });

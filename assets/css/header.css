@@ -15,20 +15,35 @@ header{
 }
 
 header a#name, header a#name:visited{
-    font-weight: bold;
-    font-size: 2em;
 }
 
 header nav{
-    display: flex;
-    flex-flow: row nowrap;
+    box-sizing: border-box;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
 }
 
 header nav > *{
-    padding: 0.5em 1em;
-    margin: 0 1em;
-    
     position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header nav > *:first-child{
+    font-weight: bold;
+    font-size: 2em;
+
+    grid-column-start: 1;
+    grid-column-end: 9;
+
+    justify-content: flex-start;
 }
 
 div.item > div.dropdown-container{
