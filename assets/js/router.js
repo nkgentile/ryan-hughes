@@ -4,23 +4,24 @@ const routes = [
     {
         path: '/',
         alias: '/home',
+        name: 'home',
         component: Home,
         props: {
-            fullpage: true
+            fullpage: true,
         }
     },
     {
         path: '/projects',
+        name: 'projects',
         component: Projects,
         props: {
-            fullpage: false
         }
     },
     {
-        path: '/projects/:slug',
+        path: '/project/:slug',
+        name: 'project',
         component: Project,
         props: {
-            fullpage: false
         }
     }
 ];

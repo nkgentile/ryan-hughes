@@ -1,50 +1,43 @@
 'use strict';
 
 Vue.component('slideshow-event-container', {
-    created(){
-        window.addEventListener("keydown", (e) => {
-            switch(e.key){
-                case "ArrowLeft":
-                    this.prev();
-                    break;
-                case "ArrowRight":
-                    this.next();
-                    break;
-                default:
-                    break;
-            }
-        });
+    props: {
+        index: {
+            type: Number,
+            default: 0
+        },
 
-        this.changeColor(this.slides[0].color);
+        color: {
+            type: String,
+            default: "black"
+        }
+    },
+
+    created(){
+        window.addEventListener("keydown", this.onArrow);
+    },
+
+    beforeDestroy(){
+        window.removeEventListener("keydown", this.onArrow);
     },
 
     methods: Object.assign(
         {
-            next(){
-                if(this.index === this.slides.length-1){
-                    return;
+            onArrow: function(e){
+                switch(e.key){
+                    case "ArrowLeft":
+                        this.prevSlide();
+                        break;
+                    case "ArrowRight":
+                        this.nextSlide();
+                        break;
+                    default:
+                        break;
                 }
-
-                this.increment();
-
-                this.changeColor(this.slides[this.index].color);
-            },
-
-            prev(){
-                if(this.index === 0){
-                    return;
-                }
-
-                this.decrement();
-
-                this.changeColor(this.slides[this.index].color);
             }
         },
-        
-        Vuex.mapMutations([
-            'increment',
-            'decrement',
 
+        Vuex.mapMutations([
             'activateLeftArrow',
             'deactivateLeftArrow',
 
@@ -52,12 +45,17 @@ Vue.component('slideshow-event-container', {
             'deactivateRightArrow',
 
             'changeColor'
+        ]),
+
+        Vuex.mapActions([
+            'nextSlide',
+            'prevSlide',
+            'reset'
         ])
     ),
 
     computed: Object.assign(
         Vuex.mapState([
-            'index',
             'isLeftArrowActive',
             'isRightArrowActive'
         ]),
@@ -67,15 +65,14 @@ Vue.component('slideshow-event-container', {
         }),
     ),
 
-
     template: `
-          <div class="event-container">
-                <div class="event-area" v-on="{ click: prev, mouseenter: activateLeftArrow, mouseleave: deactivateLeftArrow }">
-                    <span class="arrow fa fa-arrow-left"
+          <div class="event-container color-fade" :class="color">
+                <div class="event-area" v-on="{ mouseenter: activateLeftArrow, mouseleave: deactivateLeftArrow }">
+                    <span class="arrow fa fa-arrow-left" @click="prevSlide"
                             :class="{ active: isLeftArrowActive }"></span>
                 </div>
-                <div class="event-area" v-on="{ click: next, mouseenter: activateRightArrow, mouseleave: deactivateRightArrow }">
-                    <span class="arrow fa fa-arrow-right" :class="{ active: isRightArrowActive }"></span>
+                <div class="event-area" v-on="{ mouseenter: activateRightArrow, mouseleave: deactivateRightArrow }">
+                    <span class="arrow fa fa-arrow-right" @click="nextSlide" :class="{ active: isRightArrowActive }"></span>
                 </div>
             </div>
     `

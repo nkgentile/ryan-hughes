@@ -99,6 +99,9 @@ const store = new Vuex.Store({
         decrement(state){
             state.index -= 1;
         },
+        go(state, payload){
+            state.index = payload;
+        },
         activateLeftArrow(state){
             state.isLeftArrowActive = true;
         },
@@ -117,5 +120,24 @@ const store = new Vuex.Store({
     },
     
     actions: {
+        nextSlide({ state, getters, commit }){
+            const slides = getters.getFeaturedProjects,
+                lastSlideIndex = slides.length-1,
+                nextSlide = slides[state.index+1];
+
+            if(state.index < lastSlideIndex){
+                commit('increment');
+                commit('changeColor', nextSlide.color);
+            }
+        },
+        prevSlide({ state, getters, commit }){
+            const slides = getters.getFeaturedProjects,
+                prevSlide = slides[state.index-1];
+
+            if(state.index > 0){
+                commit('decrement');
+                commit('changeColor', prevSlide.color);
+            }
+        }
     }
 });

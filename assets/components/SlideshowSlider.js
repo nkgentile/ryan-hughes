@@ -1,20 +1,31 @@
 'use strict';
 
 Vue.component('slideshow-slider', {
-    computed: Object.assign( 
-        Vuex.mapState({
-            active: state => state.index,
-            translation: state => `translateX(-${state.index}00%)`
-        }),
+    props: {
+        index: {
+            type: Number,
+            default: 0
+        },
 
-        Vuex.mapGetters({
-            slides: 'getFeaturedProjects'
-        })
-    ),
+        slides: {
+            type: Array,
+            default: () => [] 
+        }
+    },
+
+    computed: {
+        translation(){
+            return `translateX(-${this.index}00%)`;
+        },
+
+        classes(){
+            return ["slide", this.color];
+        }
+    },
 
     template: `
         <div class="slider" :style="{ transform: translation }">
-            <figure v-for="(slide, index) in slides" class="slide" :class="{ active: active === index }">
+            <figure v-for="(slide, index) in slides" :class="classes">
                 <img :src="slide.hero_image"/>
                 <figcaption>{{ slide.name }}</figcaption>
             </figure>

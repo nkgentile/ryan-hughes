@@ -6,7 +6,7 @@ Vue.component('header-bar', {
     ]),
 
     template: `
-        <header class="color-fade" :class="color">
+        <header :class="color">
             <navigation-bar></navigation-bar>
         </header>
     `

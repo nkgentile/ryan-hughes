@@ -47,6 +47,14 @@
     transition: opacity 300ms linear;
 }
 
+.event-container.black .arrow{
+    color: black;
+}
+
+.event-container.white .arrow{
+    color: white;
+}
+
 .slideshow .arrow.active{
     opacity: 1;
 }
@@ -93,18 +101,14 @@
     padding: 1em;
 
     z-index: 1;
-
-    //border: 0.1em solid transparent;
 }
 
-.slideshow.white .slide figcaption{
-    //border-color: white;
+.slideshow .slide.white figcaption{
     background-color: white;
     color: black;
 }
 
-.slideshow.black .slide figcaption{
-    //border-color: black;
+.slideshow .slide.black figcaption{
     background-color: black;
     color: white;
 }
