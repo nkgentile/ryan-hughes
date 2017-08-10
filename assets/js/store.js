@@ -7,17 +7,17 @@ const store = new Vuex.Store({
         navigation: [
             {
                 name: 'Ryan Hughes',
-                route: 'home'
+                route: '/home'
             },
             {
                 name: 'Projects',
                 type: 'text',
-                route: 'projects'
+                route: '/projects'
             },
             {
                 name: 'About',
                 type: 'text',
-                route: 'about'
+                route: '/about'
             },
             {
                 name: 'Contact',
@@ -89,7 +89,10 @@ const store = new Vuex.Store({
     getters:{
     	getFeaturedProjects: (state) => {
     		return state.projects.filter( a => a.feature );
-    	}
+    	},
+        getProject: (state, payload) => {
+            return state.p
+        }
     },
     
     mutations: {

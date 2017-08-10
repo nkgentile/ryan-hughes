@@ -23,7 +23,7 @@ Vue.component('grid-item', {
     },
 
     template: `
-        <router-link :to="{ path: 'project', params: { slug: model.slug } }" :class="model.color" class="grid-item">
+        <router-link :to="{ name: 'project', params: { slug: model.slug } }" :class="model.color" class="grid-item">
             <img :src="model.hero_image" />
             <figcaption>{{ model.name }}</figcaption>
         </router-link>
