@@ -96,7 +96,7 @@ nav#mobile{
     background-color: white;
 
     box-sizing: border-box;
-    padding: 5em 1.5em;
+    padding: 2em 1.5em;
 
     width: 100vw;
     height: 100vh;
@@ -104,10 +104,30 @@ nav#mobile{
     overflow-y: auto;
 
     transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 nav#mobile.active{
     transform: translateX(0);
+}
+
+nav#mobile *, nav#mobile visited{
+    color: black;
+}
+
+nav#mobile h1{
+    font-size: 1.75em;
+}
+
+nav#mobile h2{
+    font-size: 1.25em;
+    margin-left: 1em;
+}
+
+nav#mobile h3{
+    font-size: 1em;
+    margin-left: 2em;
 }
 
 i.mobile-nav{
@@ -130,9 +150,15 @@ nav{
     transition-timing-function: linear;
 }
 
-@media screen and (max-width: 992px){
+nav *{
+    cursor: pointer;
+}
+
+@media screen, (max-width: 992px) and (orientation: portrait), 
+(max-width: 450px){
     nav#main{
         opacity: 0;
+        pointer-events: none;
     }
 
     i.mobile-nav{
@@ -141,5 +167,8 @@ nav{
     }
 
     nav#mobile{
+        transform: translateX(100%);
+        opacity: 1;
+        pointer-events: all;
     }
 }

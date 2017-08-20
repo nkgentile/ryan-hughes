@@ -78,9 +78,7 @@ Vue.component('slideshow-event-container', {
     ),
 
     template: `
-          <div class="event-container color-fade"
-            @click="click"
-          >
+          <div class="event-container color-fade">
                 <div class="event-area"
                     v-on="{ click: prev, mouseenter: activateLeftArrow, mouseleave: deactivateLeftArrow }"
                 >

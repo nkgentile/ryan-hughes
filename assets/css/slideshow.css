@@ -20,6 +20,8 @@
 }
 
 .event-area{
+    position: relative;
+    z-index: 1;
     flex: 0 0 20vw;
     
     display: flex;
@@ -61,7 +63,7 @@
     display: flex;
     flex-flow: row nowrap;
 
-    transition: transform 300ms linear;
+    transition: transform 100ms linear;
 }
 
 .slideshow .slide{

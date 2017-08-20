@@ -13,4 +13,5 @@ body.no-scroll{
 
 a, a:visited{
     text-decoration: none;
+    color: black;
 }

@@ -7,9 +7,13 @@ Vue.component('project-grid', {
 
     template: `
         <section class="grid-container">
-            <h1>Projects</h1>
             <div class="grid">
-                <grid-item v-for="(project, i) in projects" :model="project" :key="i">{{ project.name }}</grid-item>
+                <grid-item v-for="(project, i) in projects"
+                    :model="project"
+                    :key="i"
+                >
+                    {{ project.name }}
+                </grid-item>
             </div>
         </section>
     `

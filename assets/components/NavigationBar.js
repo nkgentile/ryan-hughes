@@ -1,16 +1,18 @@
 'use strict';
 
 Vue.component('navigation-bar', {
-    computed: Vuex.mapState([
-        'navigation'
-    ]),
+    props: {
+        color: String,
+        routes: Array
+    },
 
     template: `
         <nav id="main">
             <navigation-item
-                v-for="(link, index) in navigation"
-                :model="link"
-                key="index"
+                v-for="(route, index) in routes"
+                :model="route"
+                :style="{ color: color }"
+                :key="index"
             ></navigation-item>
         </nav>
     `

@@ -71,12 +71,16 @@
 
 @media screen and (max-width: 656px){
     .grid{
-        grid-template-columns: 20em;
+        grid-template-columns: 100vw;
         grid-auto-rows: 20em;
         grid-row-gap: 0.1em;
     }
 
     .grid-item:hover figcaption{
         transform: translateY(0);
+    }
+
+    .grid-item{
+        align-items: flex-end;
     }
 }

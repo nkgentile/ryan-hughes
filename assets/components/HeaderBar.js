@@ -1,11 +1,6 @@
 'use strict';
 
 Vue.component('header-bar', {
-    computed: Vuex.mapState([
-        'color',
-        'navigation'
-    ]),
-
     data(){
         return {
             isMobileNavOpen: false
@@ -49,9 +44,13 @@ Vue.component('header-bar', {
         }
     },
 
+    beforeDestroy(){
+        this.closeMobileNav();
+    },
+
     template: `
         <header>
-            <page-title></page-title>
+            <page-title :color="color"></page-title>
             <navigation-bar
                 :routes="navigation"
                 :color="color"
@@ -72,12 +71,19 @@ Vue.component('header-bar', {
 });
 
 Vue.component('page-title', {
+    props: {
+        color: String
+    },
+
 	computed: {
 		title(){
 			return `RYAN HUGHES`;
 		},
 
 		pageName(){
+            if(this.$route.params.slug !== undefined){
+                return this.$route.params.slug.toUpperCase();
+            }
 			return this.$route.name.toUpperCase();
 		},
 
@@ -87,8 +93,11 @@ Vue.component('page-title', {
 	},
 	
     template: `
-        <h1>
-            <router-link :to="{ name: 'home' }">{{ title }}</router-link><span v-show="!isRoot">, {{ pageName }}</span>
-        </h1>
+        <router-link tag="h1"
+            :to="{ name: 'home' }"
+            :style="{ color: color }"
+        >
+            {{ title }}<span v-show="!isRoot">, {{ pageName }}</span>
+        </router-link>
     `
 });
