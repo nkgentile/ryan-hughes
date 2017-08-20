@@ -1,0 +1,68 @@
+article{
+    max-width: 55em;
+
+    box-sizing: border-box;
+    padding: 5em;
+    margin: 0 auto;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+article > p{
+    flex: 0 0 100%;
+}
+
+article header{
+    padding: 0;
+    font-style: italic;
+}
+
+article footer{
+}
+
+.gallery{
+    box-sizing: border-box;
+    margin: 5em;
+
+    flex: 0 0 100vw;
+    height: 80vh;
+    overflow: hidden;
+
+    background-color: #f2f2f2;
+
+    position: relative;
+}
+
+.gallery .slider{
+    display: flex;
+    flex-flow: row nowrap;
+
+    transition: transform 150ms linear;
+}
+
+.slider figure{
+    flex: 0 0 100%;
+    height: 100%;
+    margin: 0;
+
+    position: relative; 
+}
+
+.slider figure img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.slider figcaption{
+    position: absolute;
+    color: white;
+    bottom: 0;
+    right: 0;
+
+    box-sizing: border-box;
+    margin: 2em;
+}

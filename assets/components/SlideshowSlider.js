@@ -16,19 +16,20 @@ Vue.component('slideshow-slider', {
     computed: {
         translation(){
             return `translateX(-${this.index}00%)`;
-        },
-
-        classes(){
-            return ["slide", this.color];
         }
     },
 
     template: `
         <div class="slider" :style="{ transform: translation }">
-            <figure v-for="(slide, index) in slides" :class="classes">
-                <img :src="slide.hero_image"/>
-                <figcaption>{{ slide.name }}</figcaption>
-            </figure>
+            <router-link tag="figure" class="slide"
+                :to="{ name: 'project', params: { slug: s.slug } }"
+                v-for="(s, i) in slides"
+                :class="s.color"
+                :key="i"
+            >
+                <img :src="s.hero_image"/>
+                <figcaption>{{ s.name }}</figcaption>
+            </router-link>
         </div>
     `
 });

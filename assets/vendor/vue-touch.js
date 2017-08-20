@@ -258,8 +258,6 @@ if (typeof exports == "object") {
   define([], function(){ return vueTouch });
 } else if (typeof window !== 'undefined' && window.Vue) {
   window.VueTouch = vueTouch;
-  Vue.use(vueTouch);
 }
 
 })));
-//# sourceMappingURL=vue-touch.js.map

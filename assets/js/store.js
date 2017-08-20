@@ -49,15 +49,18 @@ const store = new Vuex.Store({
 				images: [
 					{
 						source: "assets/images/9th\ Floor,\ Detail.jpg",
-						caption: ""
+						caption: "Seventh Floor, 1/4\" = 1\'",
+						color: "#FFFFFF"
 					},
 					{
 						source: "assets/images/7thFloor,\ Detail.jpg",
-						caption: ""
+						caption: "Seventh Floor, 1/4\" = 1\'",
+						color: "#FFFFFF"
 					},
 					{
 						source: "assets/images/Building\ Together.jpg",
-						caption: ""
+						caption: "Building Assembled Together, 1/4\" = 1\'",
+						color: "#FFFFFF"
 					}
 				],
 				feature: true,

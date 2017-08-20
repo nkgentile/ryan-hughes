@@ -10,15 +10,33 @@ Vue.component('slideshow-event-container', {
         color: {
             type: String,
             default: "black"
+        },
+
+        next: Function,
+        prev: Function,
+        click: Function,
+
+        keys: {
+            type: Boolean,
+            default: false 
         }
     },
 
-    created(){
-        window.addEventListener("keydown", this.onArrow);
+    mounted(){
+        if(this.keys){
+            window.addEventListener("keydown", this.onArrow);
+        }
+
+        var handler = new Hammer(this.$el);
+
+        handler.on('swipeleft', e => this.next());
+        handler.on('swiperight', e => this.prev());
     },
 
     beforeDestroy(){
-        window.removeEventListener("keydown", this.onArrow);
+        if(this.keys){
+            window.removeEventListener("keydown", this.onArrow);
+        }
     },
 
     methods: Object.assign(
@@ -26,10 +44,10 @@ Vue.component('slideshow-event-container', {
             onArrow: function(e){
                 switch(e.key){
                     case "ArrowLeft":
-                        this.prevSlide();
+                        this.prev();
                         break;
                     case "ArrowRight":
-                        this.nextSlide();
+                        this.next();
                         break;
                     default:
                         break;
@@ -48,8 +66,6 @@ Vue.component('slideshow-event-container', {
         ]),
 
         Vuex.mapActions([
-            'nextSlide',
-            'prevSlide',
             'reset'
         ])
     ),
@@ -58,21 +74,36 @@ Vue.component('slideshow-event-container', {
         Vuex.mapState([
             'isLeftArrowActive',
             'isRightArrowActive'
-        ]),
-
-        Vuex.mapGetters({
-            slides: 'getFeaturedProjects'
-        }),
+        ])
     ),
 
     template: `
-          <div class="event-container color-fade" :class="color">
-                <div class="event-area" v-on="{ mouseenter: activateLeftArrow, mouseleave: deactivateLeftArrow }">
-                    <span class="arrow fa fa-arrow-left" @click="prevSlide"
-                            :class="{ active: isLeftArrowActive }"></span>
+          <div class="event-container color-fade">
+                <div class="event-area"
+                    v-on="{ click: prev, mouseenter: activateLeftArrow, mouseleave: deactivateLeftArrow }"
+                >
+                    <div class="arrow"
+                        :class="{ active: isLeftArrowActive }"
+                    >
+                        <span class="arrow fa fa-arrow-left"
+                            :class="{ active: isLeftArrowActive }"
+                            :style="{ color: color }"
+                        >
+                        </span>
+                    </div>
                 </div>
-                <div class="event-area" v-on="{ mouseenter: activateRightArrow, mouseleave: deactivateRightArrow }">
-                    <span class="arrow fa fa-arrow-right" @click="nextSlide" :class="{ active: isRightArrowActive }"></span>
+                <div class="event-area"
+                    v-on="{ click: next, mouseenter: activateRightArrow, mouseleave: deactivateRightArrow }"
+                >
+                    <div class="arrow"
+                        :class="{ active: isRightArrowActive }"
+                    >
+                        <span class="arrow fa fa-arrow-right"
+                            :class="{ active: isRightArrowActive }"
+                            :style="{ color: color }"
+                        >
+                        </span>
+                    </div>
                 </div>
             </div>
     `

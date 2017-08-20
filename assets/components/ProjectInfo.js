@@ -1,4 +1,4 @@
 'use strict';
 
-Vue.componenet('project-info', {
+Vue.component('project-info', {
 });

@@ -30,8 +30,10 @@ const Project = Vue.extend({
 
     template: `
         <section>
-            <header-bar class="color-fade" :class="[ {floating: fullpage}, color ]"></header-bar>
-            <single-project></single-project>
+			<header-bar class="color-fade"
+                :class="[ {floating: fullpage}, color ]"
+            ></header-bar>
+            <article></article>
         </section>
     `
 });
