@@ -7,18 +7,10 @@ body{
     font-family: Futura;
 }
 
+body.no-scroll{
+    overflow: hidden;
+}
+
 a, a:visited{
     text-decoration: none;
-}
-
-.color-fade *{
-    transition: color 150ms linear;
-}
-
-.color-fade.black *{
-    color: black;
-}
-
-.color-fade.white *{
-    color: white;
 }

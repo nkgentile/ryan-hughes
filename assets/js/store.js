@@ -6,13 +6,21 @@ const store = new Vuex.Store({
     state: {
         navigation: [
             {
-                name: 'Ryan Hughes',
-                route: '/home'
-            },
-            {
                 name: 'Projects',
                 type: 'text',
-                route: '/projects'
+                route: '/projects',
+                children: [
+                    {
+                        name: 'Marden',
+                        type: 'text',
+                        route: '/projects/marden'
+                    },
+                    {
+                        name: 'Pyrite',
+                        type: 'text',
+                        route: '/project/pyrite'
+                    }
+                ]
             },
             {
                 name: 'About',
