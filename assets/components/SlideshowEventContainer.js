@@ -93,6 +93,9 @@ Vue.component('slideshow-event-container', {
                     </div>
                 </div>
                 <div class="event-area"
+                    @click="click"
+                ></div>
+                <div class="event-area"
                     v-on="{ click: next, mouseenter: activateRightArrow, mouseleave: deactivateRightArrow }"
                 >
                     <div class="arrow"

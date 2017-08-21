@@ -33,7 +33,7 @@ const Project = Vue.extend({
 			<header-bar class="color-fade"
                 :class="[ {floating: fullpage}, color ]"
             ></header-bar>
-            <article></article>
+            <component :is="project.slug"></component>
         </section>
     `
 });

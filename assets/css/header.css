@@ -26,10 +26,12 @@ header h1{
     box-sizing: border-box;
 
     margin: 0;
+    
+    transition: color 300ms ease-in-out;
 }
 
 header nav#main{
-    flex: 1 1 30em;
+    flex: 1 1 auto;
     box-sizing: border-box;
 
     display: grid;
@@ -142,6 +144,10 @@ i.mobile-nav{
     box-sizing: border-box;
     padding: 1em;
     margin: 1em;
+
+    transition-property: opacity, color;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in-out;
 }
 
 nav{
@@ -154,8 +160,7 @@ nav *{
     cursor: pointer;
 }
 
-@media screen, (max-width: 992px) and (orientation: portrait), 
-(max-width: 450px){
+@media screen and (max-width: 992px){
     nav#main{
         opacity: 0;
         pointer-events: none;

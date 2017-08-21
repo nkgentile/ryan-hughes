@@ -59,6 +59,7 @@ Vue.component('header-bar', {
             <i class="fa mobile-nav"
                 :class="icon"
                 @click="toggleMobileNav"
+                :style="{ color: !isMobileNavOpen ? color : 'black' }"
             ></i>
             <navigation-mobile
                 :class="{ active: isMobileNavOpen }"

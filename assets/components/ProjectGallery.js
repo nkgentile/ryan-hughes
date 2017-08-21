@@ -55,6 +55,7 @@ Vue.component('project-gallery', {
                 :color="assets[index].color"
                 :next="increment"
                 :prev="decrement"
+                :click="()=>{}"
             ></slideshow-event-container>
         </div>
     `
